@@ -1,17 +1,17 @@
 {
 	"name": "bitbake",
 	"description": "BitBake language support",
-	"author": "Eugen Wiens",
+	"author": "Bernard Bergan",
 	"license": "MIT",
 	"version": "1.0.2",
-	"publisher": "EugenWiens",
+	"publisher": "barndoor2276",
 	"bugs": {
-		"url": "https://github.com/EugenWiens/vscode-bitbake/issues"
+		"url": "https://github.com/barndoor2276/vscode-bitbake/issues"
 	},
-	"homepage": "https://github.com/EugenWiens/vscode-bitbake",
+	"homepage": "https://github.com/barndoor2276/vscode-bitbake",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/EugenWiens/vscode-bitbake.git"
+		"url": "https://github.com/barndoor2276/vscode-bitbake.git"
 	},
 	"scripts": {
 		"postinstall": "cd server && npm install && cd ../client && npm install && cd .. && npm run-script compile",

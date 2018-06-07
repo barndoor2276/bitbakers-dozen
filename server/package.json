@@ -2,18 +2,18 @@
   "name": "language-server-bitbake",
   "description": "Implementation of a language server for bitbake.",
   "version": "1.0.2",
-  "author": "Eugen Wiens",
+  "author": "Bernard Bergan",
   "license": "MIT",
   "engines": {
     "node": "*"
   },
   "bugs": {
-    "url": "https://github.com/EugenWiens/vscode-bitbake/issues"
+    "url": "https://github.com/barndoor2276/vscode-bitbake/issues"
   },
-  "homepage": "https://github.com/EugenWiens/vscode-bitbake",
+  "homepage": "https://github.com/barndoor2276/vscode-bitbake",
   "repository": {
     "type": "git",
-    "url": "https://github.com/EugenWiens/vscode-bitbake.git"
+    "url": "https://github.com/barndoor2276/vscode-bitbake.git"
   },
   "dependencies": {
     "execa": "^0.6.3",

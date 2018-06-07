@@ -16,6 +16,21 @@ Manual installation takes place in two steps. The code must be installed via `np
 ### Code installation
 
 To install the extension:
-```
+
+```bash
 npm install
 ```
+
+## Authors
+
+* **Original Author - Eugen Wiens** - [EugenWiens](https://github.com/EugenWiens)
+* **Forker - Bernard Bergan** - [barndoor2276](https://github.com/barndoor2276)
+
+## License
+
+This project is licensed by MIT.
+
+## Acknowledgments
+
+* Eugen Wiens for the original authoring of the extension
+* My cat Hugh
