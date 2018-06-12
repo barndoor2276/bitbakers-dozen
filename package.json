@@ -26,7 +26,7 @@
 		"distclean:server": "cd server && rm -fr node_modules && cd ..",
 		"distclean:client": "cd client && rm -fr node_modules && cd ..",
 		"distclean": "npm run-script distclean:server && npm run-script distclean:client && rm -fr node_modules",
-		"publish:vsix": "npm version patch && vsce package"
+		"publish:vsix": "mkdir -p build && npm version patch && vsce package build/"
 	},
 	"devDependencies": {
 		"@types/mocha": "^2.2.42",
