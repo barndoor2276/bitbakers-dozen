@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.3 - 2018.06.12
+
+- Enhancements
+
+  - Add user config settings to disable the auto-generate of the build folder and scripts.
+
+---
+
 ## 1.0.2 - 2018.04.11
 
 - Fixed Bugs
