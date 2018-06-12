@@ -5,9 +5,6 @@
   "license": "MIT",
   "version": "1.0.3",
   "publisher": "barndoor2276",
-  "engines": {
-    "vscode": "^1.22.0"
-  },
   "bugs": {
     "url": "https://github.com/barndoor2276/vscode-bitbake/issues"
   },
@@ -25,8 +22,7 @@
     "watch:server": "cd server && npm run installServer && cd .. && tsc -w -p server/tsconfig.json",
     "distclean:server": "cd server && rm -fr node_modules && cd ..",
     "distclean:client": "cd client && rm -fr node_modules && cd ..",
-    "distclean": "npm run-script distclean:server && npm run-script distclean:client && rm -fr node_modules",
-    "publish:vsix": "mkdir -p build && npm version patch && vsce package build/"
+    "distclean": "npm run-script distclean:server && npm run-script distclean:client && rm -fr node_modules"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.42",
