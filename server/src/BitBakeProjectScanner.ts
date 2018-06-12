@@ -47,6 +47,7 @@ export class BitBakeProjectScanner {
     private _deepExamine: boolean = false;
     private _settingsScriptInterpreter: string = '/bin/bash';
     private _settingsWorkingFolder: string = 'vscode-bitbake-build';
+    private _settingsGenerateWorkingFolder: boolean = false;
     private _settingsBitbakeSourceCmd: string = '.';
     private _settingsMachine: string = undefined;
     private _outputParser: OutputParser;
@@ -90,6 +91,10 @@ export class BitBakeProjectScanner {
 
     set workingPath(workingPath: string) {
         this._settingsWorkingFolder = workingPath;
+    }
+
+    set generateWorkingPath(generateWorkingPath: boolean) {
+        this._settingsGenerateWorkingFolder = generateWorkingPath;
     }
 
     set machineName(machine: string) {
@@ -374,13 +379,18 @@ export class BitBakeProjectScanner {
         let pathToScriptFile: string = this._projectPath + '/' + this._settingsWorkingFolder;
         let scriptFileName: string = pathToScriptFile + '/executeBitBakeCmd.sh';
 
-        if( !fs.existsSync(pathToScriptFile) ){
-            fs.mkdirSync(pathToScriptFile)
+        if(this._settingsGenerateWorkingFolder === true) {
+            if( !fs.existsSync(pathToScriptFile) ){
+                fs.mkdirSync(pathToScriptFile)
+            }
+            fs.writeFileSync(scriptFileName, scriptContent);
+            fs.chmodSync(scriptFileName, '0755');
+            
+            return this.executeCommand(scriptFileName);
         }
-        fs.writeFileSync(scriptFileName, scriptContent);
-        fs.chmodSync(scriptFileName, '0755');
-
-        return this.executeCommand(scriptFileName);
+        else {
+            return this.executeCommand(scriptContent);
+        }
     }
 
     private executeCommand(command: string): string {
