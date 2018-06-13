@@ -27,6 +27,12 @@
 				"${workspaceRoot}/client/server/**/*.js"
 			],
 			"preLaunchTask": "watch:server"
+		},
+		{
+			"name": "Launch Versioning",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceRoot}/versioning.js"
 		}
 	]
 }
