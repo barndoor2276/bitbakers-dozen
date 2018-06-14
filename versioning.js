@@ -1,11 +1,12 @@
 var fs = require('fs');
 
 const masterPackage = require('./package.json');
-var clientPackage = require('./client/package.json');
-var serverPackage = require('./server/package.json');
 
-var clientHasChanges = false;
-var serverHasChanges = false;
+var clientPackagePath = './client/package.json';
+var serverPackagePath = './server/package.json';
+
+var clientPackage = require(clientPackagePath);
+var serverPackage = require(serverPackagePath);
 
 var packageSettingsToSync =
 [ 
@@ -22,12 +23,12 @@ var packageSettingsToSync =
 ];
 
 assignPackageSettings(packageSettingsToSync)
-.then(function () {
+.then(function (clientHasChanges, clientReturnPackage, serverHasChanges, serverReturnPackage) {
     console.log('Successfully assigned all client and server package.json settings from master.');
     return Promise.all(
         [
-            writePackageToFile(),
-            writePackageToFile()
+            writePackageToFile(clientPackagePath, clientReturnPackage, clientHasChanges),
+            writePackageToFile(serverPackagePath, serverReturnPackage, serverHasChanges)
         ]);
 })
 .then(function () {
@@ -37,28 +38,39 @@ assignPackageSettings(packageSettingsToSync)
     console.log('Error: Did not assign all client and server package.json settings from master.');
 });
 
-function assignPackageSettings (packageJson) {
+function assignPackageSettings (settingsArray) {
     return new Promise(function(resolve, reject) {
-        for(var item in packageJson) {
-            console.log('Assigning ' + item[0] + ' to client package.json');
-            item[1] = item[0];
-            console.log('Assigning ' + item[0] + ' to server package.json');
-            item[2] = item[0];
+        var clientHasChanges = false;
+        var serverHasChanges = false;
+
+        for(count = 0; count < settingsArray.length; count++) {
+            if(settingsArray[count][0] !== settingsArray[count][1]) {
+                console.log('Assigning ' + settingsArray[count][0] + ' to client package.json');
+                clientHasChanges = true;
+                settingsArray[count][1] = settingsArray[count][0];
+            }
+            if(settingsArray[count][0] !== settingsArray[count][2]) {
+                console.log('Assigning ' + settingsArray[count][0] + ' to server package.json');
+                serverHasChanges = true;
+                settingsArray[count][2] = settingsArray[count][0];
+            }
         }
-        resolve();
+        resolve(clientHasChanges, serverHasChanges);
     });
 };
 
-function writePackageToFile (pathDestination, packageJson) {
+function writePackageToFile (pathDestination, packageJson, hasChanges) {
     return new Promise(function(resolve, reject) {
-        fs.writeFile(pathDestination, packageJson, function (err) {
-            if (err) {
-                var errMessage = 'There was an error writing the package.json to file.';
-                logger.error(errMessage + ' : ' + err.message);
-                reject(new Error(errMessage));
-            }
-            logger.info('Wrote to ' + pathDestination);
-            resolve();
-        });
+        if(hasChanges === true) {
+            fs.writeFile(pathDestination, packageJson, function (err) {
+                if (err) {
+                    var errMessage = 'There was an error writing the package.json to file.';
+                    logger.error(errMessage + ' : ' + err.message);
+                    reject(new Error(errMessage));
+                }
+                logger.info('Wrote to ' + pathDestination);
+            });
+        }
+        resolve();
     });
 }
