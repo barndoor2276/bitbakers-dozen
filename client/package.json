@@ -1,11 +1,10 @@
 {
-  "name": "bitbake",
+  "name": "bitbakers-dozen",
   "description": "BitBake language support",
   "author": "Bernard Bergan",
   "license": "MIT",
   "version": "1.0.2",
   "publisher": "barndoor2276",
-  "icon": "images/icon.png",
   "bugs": {
     "url": "https://github.com/barndoor2276/vscode-bitbake/issues"
   },
@@ -14,6 +13,7 @@
     "type": "git",
     "url": "https://github.com/barndoor2276/vscode-bitbake.git"
   },
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.16.0"
   },

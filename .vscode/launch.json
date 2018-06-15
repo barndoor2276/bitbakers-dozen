@@ -29,10 +29,14 @@
 			"preLaunchTask": "watch:server"
 		},
 		{
-			"name": "Launch Versioning",
+			"name": "Launch Packaging",
 			"type": "node",
 			"request": "launch",
-			"program": "${workspaceRoot}/versioning.js"
+			"program": "${workspaceRoot}/packaging.js",
+			"args": [
+				"testarg1",
+				"testarg2"
+			]
 		}
 	]
 }
