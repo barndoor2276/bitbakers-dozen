@@ -7,14 +7,15 @@ const masterPackageJson = require('./package.json');
 var _continue = true;
 
 var _settings = {
-    "version": masterPackageJson.version,
-    "allowedVersionings": [
+    version: masterPackageJson.version,
+    allowedVersionings: [
         "patch",
         "major",
         "minor"
     ],
-    "package": true,
-    "publish": false
+    package: true,
+    publish: false,
+    packagePath: './build-vsix/'
 }
 
 for(i = 0; i < process.argv.length; i++) {
@@ -53,13 +54,13 @@ if(_continue === true) {
 }
 
 function doItAll() {
-    Promise.all([
+    return Promise.all([
         processVersion(_settings, '.'),
-        processVersion(_settings.version, 'client'),
-        processVersion(_settings.version, 'server')
+        processVersion(_settings, 'client'),
+        processVersion(_settings, 'server')
     ])
     .then(function () {
-        //return processPackage(_settings);
+        return processPackage(_settings);
     })
     .catch(function(error) {
         console.log(error);
@@ -80,14 +81,15 @@ function processPackage (settings) {
         if(settings.publish === true) {
             console.log('Process Package: Publish not implemented.');
         }
-        reject('Process Package: Something went wrong.');
     });
 }
 
 function processVersion (settings, relativePath) {
     return new Promise(function (resolve, reject) {
         if(semver.valid(settings.version) || settings.allowedVersionings.includes(settings.version)) {
-            exec('cd ' + relativePath + ' && npm version ' + settings.version + ' --no-git-tag-version', function (error) {
+            var command = 'cd ' + relativePath + ' && npm version ' + settings.version + ' --no-git-tag-version';
+            exec(command,
+            function (error, stdout, stderr) {
                 if(error !== null) {
                     console.log(error);
                     reject(error);
@@ -95,6 +97,5 @@ function processVersion (settings, relativePath) {
                 resolve();
             });
         }
-        reject('Process Version: Something went wrong.')
     });
 }

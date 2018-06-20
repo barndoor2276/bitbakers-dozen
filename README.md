@@ -9,17 +9,15 @@ For a description of the extension itself, please see [the client's README](./cl
 To install this extension from the VS Code Extension Marketplace, please follow [this guide](https://marketplace.visualstudio.com/items?itemName=EugenWiens.bitbake).
 For more information regarding the Extension Marketplace, please see the [official documentation](https://code.visualstudio.com/docs/editor/extension-gallery).
 
-## Manual installation
-
-Manual installation takes place in two steps. The code must be installed via `npm` and subsequently built within Visual Studio Code. Before performing these steps, please ensure you have cloned this repository.
-
-### Code installation
+### VS Code installation
 
 To install the extension:
 
 ```bash
-npm install
+npm run package -- [-v | --version] [<newversion> | major | minor | patch] --package
 ```
+
+This will create a VSIX in the client/ folder of the project directory.
 
 ## Authors
 
