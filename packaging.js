@@ -30,9 +30,11 @@ for(i = 0; i < process.argv.length; i++) {
             }
         case '--package':
             _settings.package = true;
+            _settings.publish = false;
             break;
         case '--publish':
             _settings.publish = true;
+            _settings.package = false;
             break;
         case '-h':
         case '--help':
@@ -78,8 +80,14 @@ function processPackage (settings) {
                 resolve();
             });
         }
-        if(settings.publish === true) {
-            console.log('Process Package: Publish not implemented.');
+        else if(settings.publish === true) {
+            exec('cd client && vsce publish', function (error) {
+                if(error !== null) {
+                    console.log(error);
+                    reject(error);
+                }
+                resolve();
+            });
         }
     });
 }
@@ -87,7 +95,10 @@ function processPackage (settings) {
 function processVersion (settings, relativePath) {
     return new Promise(function (resolve, reject) {
         if(semver.valid(settings.version) || settings.allowedVersionings.includes(settings.version)) {
-            var command = 'cd ' + relativePath + ' && npm version ' + settings.version + ' --no-git-tag-version';
+            var command = 'cd ' + relativePath + ' && npm version ' + settings.version;
+            if(settings.package === true) {
+                command = command + ' --no-git-tag-version';
+            }
             exec(command,
             function (error, stdout, stderr) {
                 if(error !== null) {

@@ -14,7 +14,7 @@ For more information regarding the Extension Marketplace, please see the [offici
 To install the extension:
 
 ```bash
-npm run package -- [-v | --version] [<newversion> | major | minor | patch] --package
+npm run package -- [-v | --version] [<newversion> | major | minor | patch] [--package, --publish]
 ```
 
 This will create a VSIX in the client/ folder of the project directory.

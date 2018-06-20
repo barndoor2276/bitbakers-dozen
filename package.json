@@ -22,7 +22,8 @@
     "watch:server": "cd server && npm run installServer && cd .. && tsc -w -p server/tsconfig.json",
     "distclean:server": "cd server && rm -fr node_modules && cd ..",
     "distclean:client": "cd client && rm -fr node_modules && cd ..",
-    "package": "node ./packaging.js"
+    "package": "node ./packaging.js",
+    "publish": "node ./packaging.js"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.42",
