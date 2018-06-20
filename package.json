@@ -3,7 +3,7 @@
   "description": "BitBake language support",
   "author": "Bernard Bergan",
   "license": "MIT",
-  "version": "1.0.4",
+  "version": "1.0.2",
   "publisher": "barndoor2276",
   "bugs": {
     "url": "https://github.com/barndoor2276/vscode-bitbake/issues"
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@types/mocha": "^2.2.42",
     "@types/node": "^6.0.88",
+    "semver": "^5.5.0",
     "sync-json": "^1.0.2",
     "typescript": "^2.5.2"
   }

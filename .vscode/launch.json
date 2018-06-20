@@ -34,8 +34,9 @@
 			"request": "launch",
 			"program": "${workspaceRoot}/packaging.js",
 			"args": [
-				"testarg1",
-				"testarg2"
+				"-v",
+				"patch",
+				"--package"
 			]
 		}
 	]
