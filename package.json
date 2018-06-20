@@ -3,7 +3,7 @@
   "description": "BitBake language support",
   "author": "Bernard Bergan",
   "license": "MIT",
-  "version": "1.0.3",
+  "version": "1.0.2",
   "publisher": "bbergan",
   "bugs": {
     "url": "https://github.com/barndoor2276/vscode-bitbake/issues"
