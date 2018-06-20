@@ -95,10 +95,7 @@ function processPackage (settings) {
 function processVersion (settings, relativePath) {
     return new Promise(function (resolve, reject) {
         if(semver.valid(settings.version) || settings.allowedVersionings.includes(settings.version)) {
-            var command = 'cd ' + relativePath + ' && npm version ' + settings.version;
-            if(settings.package === true) {
-                command = command + ' --no-git-tag-version';
-            }
+            var command = 'cd ' + relativePath + ' && npm version ' + settings.version + ' --no-git-tag-version';
             exec(command,
             function (error, stdout, stderr) {
                 if(error !== null) {
