@@ -53,15 +53,13 @@ if(_continue === true) {
 }
 
 function doItAll() {
-    processVersion(_settings, '.')
+    Promise.all([
+        processVersion(_settings, '.'),
+        processVersion(_settings.version, 'client'),
+        processVersion(_settings.version, 'server')
+    ])
     .then(function () {
-        return processVersion(_settings.version, 'client')
-    })
-    .then(function () {
-        return processVersion(_settings.version, 'server')
-    })
-    .then(function () {
-        return processPackage(_settings);
+        //return processPackage(_settings);
     })
     .catch(function(error) {
         console.log(error);
@@ -89,7 +87,7 @@ function processPackage (settings) {
 function processVersion (settings, relativePath) {
     return new Promise(function (resolve, reject) {
         if(semver.valid(settings.version) || settings.allowedVersionings.includes(settings.version)) {
-            exec('cd ' + relativePath + ' && npm version ' + settings.version, function (error) {
+            exec('cd ' + relativePath + ' && npm version ' + settings.version + ' --no-git-tag-version', function (error) {
                 if(error !== null) {
                     console.log(error);
                     reject(error);
