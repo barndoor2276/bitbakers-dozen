@@ -1,12 +1,10 @@
 {
-  "name": "language-server-bitbake",
-  "description": "Implementation of a language server for bitbake.",
-  "version": "1.0.2",
+  "name": "bitbakers-dozen",
+  "description": "BitBake language support",
   "author": "Bernard Bergan",
   "license": "MIT",
-  "engines": {
-    "node": "*"
-  },
+  "version": "1.0.3",
+  "publisher": "bbergan",
   "bugs": {
     "url": "https://github.com/barndoor2276/vscode-bitbake/issues"
   },
@@ -14,6 +12,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/barndoor2276/vscode-bitbake.git"
+  },
+  "engines": {
+    "node": "*"
   },
   "dependencies": {
     "execa": "^0.6.3",
